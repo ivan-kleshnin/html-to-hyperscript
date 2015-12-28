@@ -1,0 +1,9 @@
+.idea/
+.DS_Store/
+
+ignore/
+node_modules/
+website/
+
+test*
+
