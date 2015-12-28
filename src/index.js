@@ -1,6 +1,5 @@
 import {assoc, assocPath, append, contains, curry, drop, dropWhile, identity, join, keys} from "ramda";
 import {map, merge, pipe, prepend, split, reduce, repeat, replace, takeWhile, trim} from "ramda";
-import {inspect} from "util";
 import parse5 from "parse5";
 import {mapIndexed, reduceIndexed, dropEmpty, joinNonEmpty, commonSort, filterNames, rejectNames, findName, addName} from "./helpers";
 import inline from "./inline";
