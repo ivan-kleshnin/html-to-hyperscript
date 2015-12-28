@@ -1,9 +1,7 @@
 .idea/
 .DS_Store/
-
 ignore/
+npm-debug.log
 node_modules/
 website/
-
 test*
-
