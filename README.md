@@ -140,6 +140,10 @@ So we don't care much about dependencies.<br/>
 
 [Parse5](https://github.com/inikulin/parse5)
 
+## Service
+
+Use [**html-to-hyperscript.paqmind.com**](html-to-hyperscript.paqmind.com) to convert HTML to HyperScript online.
+
 ## License
 
 MIT
