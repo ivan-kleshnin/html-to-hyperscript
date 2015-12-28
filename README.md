@@ -142,7 +142,7 @@ So we don't care much about dependencies.<br/>
 
 ## Service
 
-Use [**html-to-hyperscript.paqmind.com**](html-to-hyperscript.paqmind.com) to convert HTML to HyperScript online.
+Use [**html-to-hyperscript.paqmind.com**](http://html-to-hyperscript.paqmind.com) to convert HTML to HyperScript online.
 
 ## License
 
