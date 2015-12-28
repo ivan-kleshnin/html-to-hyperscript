@@ -1,6 +1,6 @@
 {
   "name": "html-to-hyperscript",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Convert HTML to HyperScript (both syntaxes)",
   "author": "Ivan Kleshnin <ivan@paqmind.com> (paqmind.com)",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "test": "mocha --compilers js:babel/register specs",
     "prebuild": "rm -rf lib/ && mkdir -p lib",
     "build": "babel -d lib/ src/",
-    "release-patch": "git checkout master && npm run build && git commit -a -m 'Build'; npm version patch && git push origin master --tags && npm publish --access=public",    "release-minor": "git checkout master && npm run build && npm run webpack && git commit -a -m 'Make dist'; npm version minor && git push origin master --tags && npm publish --access=public",
+    "release-patch": "git checkout master && npm run build && git commit -a -m 'Build'; npm version patch && git push origin master --tags && npm publish --access=public",
     "release-minor": "git checkout master && npm run build && git commit -a -m 'Build'; npm version minor && git push origin master --tags && npm publish --access=public",
     "release-major": "git checkout master && npm run build && git commit -a -m 'Build'; npm version major && git push origin master --tags && npm publish --access=public",
     "release": "npm run release-patch"
