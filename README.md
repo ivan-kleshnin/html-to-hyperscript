@@ -140,9 +140,9 @@ So we don't care much about dependencies.<br/>
 
 [Parse5](https://github.com/inikulin/parse5)
 
-## Service
+## Web Service
 
-Use [**html-to-hyperscript.paqmind.com**](http://html-to-hyperscript.paqmind.com) to convert HTML to HyperScript online.
+Use [**html-to-hyperscript.paqmind.com**](http://html-to-hyperscript.paqmind.com) to convert HTML to HyperScript online.<br/>
 
 ## License
 
