@@ -1,5 +1,9 @@
 {
   "name": "html-to-hyperscript",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivan-kleshnin/html-to-hyperscript.git"
+  },
   "version": "0.5.1",
   "description": "Convert HTML to HyperScript (both syntaxes)",
   "author": "Ivan Kleshnin <ivan@paqmind.com> (paqmind.com)",
@@ -14,6 +18,9 @@
     "release-minor": "git checkout master && npm run build && git commit -a -m 'Build'; npm version minor && git push origin master --tags && npm publish --access=public",
     "release-major": "git checkout master && npm run build && git commit -a -m 'Build'; npm version major && git push origin master --tags && npm publish --access=public",
     "release": "npm run release-patch"
+  },
+  "engines": {
+    "node": ">=4.2.2"
   },
   "dependencies": {
     "parse5": "2.0.2",
