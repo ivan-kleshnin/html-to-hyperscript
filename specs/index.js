@@ -18,7 +18,7 @@ describe("htmlToHs()", function () {
   });
 
   it("should convert comments", function () {
-    assert.equal(convert('<div><!-- c1 --></div>'), 'div([/* c1 */])');
+    assert.equal(convert('<div><!-- c1 --></div>'), 'div(/* c1 */)');
     assert.equal(convert('<div>t1<span>t2</span><!-- c1 --><!-- c2 --></div>'), 'div([\n  `t1`,\n  span([`t2`])\n  /* c1 */\n  /* c2 */\n])');
     assert.equal(convert('<div><!-- c1 --><!-- c2 -->t1<span>t2</span></div>'), 'div([\n  /* c1 */\n  /* c2 */\n  `t1`,\n  span([`t2`])\n])');
     assert.equal(convert('<!-- c1 --><!-- c2 -->'), '[\n  /* c1 */\n  /* c2 */\n]');
@@ -99,6 +99,9 @@ describe("htmlToHs()", function () {
 
       let html3 = `<div class="foo"><span></span></div>`;
       assert.equal(htmlToHs({syntax: "h"}, html3), 'h("div.foo", [\n  h("span")\n])');
+
+      let html4 = `<div>test</div>`;
+      assert.equal(htmlToHs({syntax: "h"}, html4), 'h("div", `test`)');
     });
   });
 });
