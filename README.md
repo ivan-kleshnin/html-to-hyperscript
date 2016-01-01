@@ -8,7 +8,7 @@ Here and below first syntax is referenced as H, second – as HH.
 ## Install
 
 ```
-$ npm install html-to-hyperscript --save
+$ npm install html-to-hyperscript
 ```
 
 ## Use

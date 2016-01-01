@@ -10,6 +10,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
+    "postinstall": "bin/install",
     "lint": "eslint src",
     "test": "mocha --compilers js:babel/register specs",
     "prebuild": "rm -rf lib/ && mkdir -p lib",
