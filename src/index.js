@@ -81,7 +81,7 @@ let htmlToHs2 = curry((opts, html) => {
     let space = makeSpace(depth);
     let attrs = node.attrs;
 
-    let props = reduce((memo, item) => attributesSelector(item)(memo), {}, attrs);
+    let props = reduce((memo, item) => opts.attributesSelector(item)(memo), {}, attrs);
 
     let json = JSON.stringify(props, null, 2);
     let rows = split("\n", json);
