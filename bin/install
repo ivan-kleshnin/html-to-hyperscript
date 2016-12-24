@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-# Setup local Mocha to be runned through Babel Node
-bin=node_modules/mocha/bin/mocha
-sed '1 s/ node$/ babel-node/' ${bin} > .mocha && mv .mocha ${bin} && chmod +x ${bin}
-bin=node_modules/mocha/bin/_mocha
-sed '1 s/ node$/ babel-node/' ${bin} > ._mocha && mv ._mocha ${bin} && chmod +x ${bin}
