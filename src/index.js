@@ -34,10 +34,19 @@ let normalizeAttrs = function (attrs) {
   )(rejectNames(["class", "classname", "for", "htmlfor"], attrs))
 }
 
+let attributesSelector = (item) => {
+  switch (item.name) {
+    case "id":    return assoc("id", item.value)
+    case "style": return assoc("style", item.value)
+    default:      return assocPath(["attributes", item.name], item.value)
+  }
+}
+
 // Object -> String -> [String, [String]]
 let htmlToHs2 = curry((opts, html) => {
   opts = merge({
     tabSize: 2,
+    attributesSelector,
     syntax: "hh", // "h" / "hh"
   }, opts)
 
@@ -68,17 +77,7 @@ let htmlToHs2 = curry((opts, html) => {
     let space = makeSpace(depth)
     let attrs = node.attrs
 
-    let id = findName("id", attrs)
-    let style = findName("style", attrs)
-    let props = reduce((memo, item) => {
-      return assocPath(["attributes", item.name], item.value, memo)
-    }, {}, rejectNames(["id", "style"], attrs))
-    if (id) {
-      props.id = id
-    }
-    if (style) {
-      props.style = style
-    }
+    let props = reduce((memo, item) => opts.attributesSelector(item)(memo), {}, attrs)
 
     let json = JSON.stringify(props, null, 2)
     let rows = split("\n", json)
