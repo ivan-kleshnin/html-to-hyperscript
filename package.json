@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/ivan-kleshnin/html-to-hyperscript.git"
   },
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "Convert HTML to HyperScript (both syntaxes)",
   "author": "Ivan Kleshnin <ivan@paqmind.com> (paqmind.com)",
   "keywords": [
