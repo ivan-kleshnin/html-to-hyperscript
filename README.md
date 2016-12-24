@@ -15,13 +15,13 @@ $ npm install html-to-hyperscript
 
 **test.js**
 ```js
-import {htmlToHs} from "html-to-hyperscript";
+let {htmlToHs} = require("html-to-hyperscript")
 
-let convert = htmlToHs({tabSize: 4});
+let convert = htmlToHs({tabSize: 4})
 
 console.log(
   convert("<div>foo <span>bar</span></div>")
-);
+)
 ```
 
 **$ babel-node test.js**
@@ -45,20 +45,20 @@ according to passed options.
 ### Example
 
 ```js
-> let convert = htmlToHs({});
+> let convert = htmlToHs({})
 
-> convert('<div class="foo"></div>');
+> convert('<div class="foo"></div>')
 'div(".foo")'
 
-> convert('<a rel="stylesheet">public/bundle.css</a>');
+> convert('<a rel="stylesheet">public/bundle.css</a>')
 'a({\n  "attributes": {\n  "rel": "stylesheet"\n  }\n}, [`public/bundle.css`])'
 
-> convert('<div><span>foo</span></div>');
+> convert('<div><span>foo</span></div>')
 'div([\n  span([`foo`])\n])'
 
-> let convert = htmlToHs({syntax: "h"});
+> let convert = htmlToHs({syntax: "h"})
 
-> convert('<div><span>foo</span></div>');
+> convert('<div><span>foo</span></div>')
 'h("div", [\n  h("span", [`foo`])\n])'
 ```
 
@@ -70,13 +70,13 @@ keeping a list of used tagnames. Use with HH syntax.
 ### Example
 
 ```js
-> let [_, usedTagNames] = htmlToHs2({}, "<div><i>italic</i><b>bold #1</b><b>bold #2</b></div>");
+> let [_, usedTagNames] = htmlToHs2({}, "<div><i>italic</i><b>bold #1</b><b>bold #2</b></div>")
 
 > usedTagNames
 ['b', 'i', 'div']
 
-> `let {${usedTagNames.join(", ")}} = hh(h);`.
-'let {b, i, div} = hh(h);'
+> `let {${usedTagNames.join(", ")}} = hh(h)`.
+'let {b, i, div} = hh(h)'
 ```
 
 ### `Opts :: {tabSize :: Number, syntax :: String}`
