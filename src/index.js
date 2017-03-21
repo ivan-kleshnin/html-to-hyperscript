@@ -1,5 +1,24 @@
-let {assoc, assocPath, append, contains, curry, drop, dropWhile, identity, join, keys} = require("ramda")
-let {map, merge, pipe, prepend, split, reduce, repeat, replace, takeWhile, trim} = require("ramda")
+let assoc = require("ramda/src/assoc");
+let assocPath = require("ramda/src/assocPath");
+let append = require("ramda/src/append");
+let contains = require("ramda/src/contains");
+let curry = require("ramda/src/curry");
+let drop = require("ramda/src/drop");
+let dropWhile = require("ramda/src/dropWhile");
+let identity = require("ramda/src/identity");
+let join = require("ramda/src/join");
+let keys = require("ramda/src/keys");
+let map = require("ramda/src/map");
+let merge = require("ramda/src/merge");
+let pipe = require("ramda/src/pipe");
+let prepend = require("ramda/src/prepend");
+let split = require("ramda/src/split");
+let reduce = require("ramda/src/reduce");
+let repeat = require("ramda/src/repeat");
+let replace = require("ramda/src/replace");
+let takeWhile = require("ramda/src/takeWhile");
+let trim = require("ramda/src/trim");
+
 let parse5 = require("parse5")
 let {mapIndexed, reduceIndexed, dropEmpty, joinNonEmpty, commonSort, filterNames, rejectNames, findName, addName} = require("./helpers")
 let inline = require("./inline")
