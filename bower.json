@@ -1,0 +1,32 @@
+{
+  "name": "html-to-hyperscript",
+  "version": "0.6.1",
+  "description": "Convert HTML to HyperScript (both syntaxes)",
+  "author": {
+    "name": "Ivan Kleshnin",
+    "email": "ivan@paqmind.com",
+    "url": "paqmind.com"
+  },
+  "keywords": [
+    "html",
+    "hyperscript"
+  ],
+  "main": "src/index.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "dependencies": {
+    "parse5": "^3.0.2",
+    "ramda": "^0.22.1"
+  },
+  "keywords": [
+    "functional"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components"
+  ]
+}
