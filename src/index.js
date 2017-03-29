@@ -8,7 +8,6 @@ let dropWhile = require("ramda/src/dropWhile")
 let identity = require("ramda/src/identity")
 let join = require("ramda/src/join")
 let keys = require("ramda/src/keys")
-
 let map = require("ramda/src/map")
 let merge = require("ramda/src/merge")
 let pipe = require("ramda/src/pipe")
@@ -19,45 +18,47 @@ let repeat = require("ramda/src/repeat")
 let replace = require("ramda/src/replace")
 let takeWhile = require("ramda/src/takeWhile")
 let trim = require("ramda/src/trim")
-
 let parse5 = require("parse5")
-let {mapIndexed, reduceIndexed, dropEmpty, joinNonEmpty, commonSort, filterNames, rejectNames, findName, addName} = require("./helpers")
+let {mapI, reduceI, dropEmpty, joinNonEmpty, commonSort, filterByNames, rejectByNames, findByName} = require("./helpers")
 let inline = require("./inline")
 
-let isComment = (node => node.nodeName == "#comment")
+let isComment = (node) => node.nodeName == "#comment"
 
-let isText = (node => node.nodeName == "#text")
+let isText = (node) => node.nodeName == "#text"
 
-let isTag = (node => !(isComment(node) || isText(node)))
+let isTag = (node) => !(isComment(node) || isText(node))
 
-let isInline = (node => isTag(node) && contains(node.tagName, inline))
+let isInline = (node) => isTag(node) && contains(node.tagName, inline)
 
-let hasSelectorAttrs = function (node) {
-  return filterNames(["id", "className"], node.attrs).length > 0
-}
+let hasSelectorAttrs = (node) => filterByNames(["id", "className"], node.attrs).length > 0
 
-let hasNonSelectorAttrs = function (node) {
-  return rejectNames(["id", "className"], node.attrs).length > 0
-}
+let hasNonSelectorAttrs = (node) => rejectByNames(["id", "className"], node.attrs).length > 0
 
-let hasChildren = function (node) {
-  let children = node.childNodes
-  return children && children.length > 0
-}
+let hasChildren = (node) => node.childNodes && node.childNodes.length > 0
 
-let normalizeAttrs = function (attrs) {
-  let className = (findName("class", attrs) || findName("classname", attrs) || {}).value
-  let htmlFor = (findName("for", attrs) || findName("htmlfor", attrs) || {}).value
+let normalizeAttrs = (attrs) => {
+  let className = (findByName("class", attrs) || findByName("classname", attrs) || {}).value
+  let htmlFor = (findByName("for", attrs) || findByName("htmlfor", attrs) || {}).value
   return pipe(
-    className ? addName("className", className) : identity,
-    htmlFor   ? addName("htmlFor", htmlFor)     : identity
-  )(rejectNames(["class", "classname", "for", "htmlfor"], attrs))
+    className ? append({name: "className", value: className}) : identity,
+    htmlFor   ? append({name: "htmlFor", value: htmlFor})     : identity
+  )(rejectByNames(["class", "classname", "for", "htmlfor"], attrs))
+}
+
+let CSSRuleTextToObject = function (CSSText) {
+  let regex = /([\w-]*)\s*:\s*([^;]*)/g
+  let match
+  let obj = {}
+  while(match = regex.exec(CSSText)) {
+    obj[match[1]] = match[2].trim()
+  }
+  return obj
 }
 
 let attributesSelector = (item) => {
   switch (item.name) {
     case "id":    return assoc("id", item.value)
-    case "style": return assoc("style", item.value)
+    case "style": return assoc("style", CSSRuleTextToObject(item.value))
     default:      return assocPath(["attributes", item.name], item.value)
   }
 }
@@ -86,8 +87,8 @@ let htmlToHs2 = curry((opts, html) => {
   }
 
   let renderSelector = function (depth, node) {
-    let id = (findName("id", node.attrs) || {}).value
-    let className = (findName("className", node.attrs) || {}).value
+    let id = (findByName("id", node.attrs) || {}).value
+    let className = (findByName("className", node.attrs) || {}).value
     let idSelector = id ? "#" + id : ""
     let classSelector = className ? "." + join(".", split(" ", className)) : ""
     return idSelector + classSelector
@@ -97,7 +98,7 @@ let htmlToHs2 = curry((opts, html) => {
     let space = makeSpace(depth)
     let attrs = node.attrs
 
-    let props = reduce((memo, item) => opts.attributesSelector(item)(memo), {}, attrs)
+    let props = reduce((z, x) => opts.attributesSelector(x)(z), {}, attrs)
 
     let json = JSON.stringify(props, null, 2)
     let rows = split("\n", json)
@@ -163,7 +164,7 @@ let htmlToHs2 = curry((opts, html) => {
     let tail = drop(1, dropWhile(isComment, nodes))
 
     // Reduce
-    return reduceIndexed((memo, node, i) => {
+    return reduceI((memo, node, i) => {
       let res = renderNode(depth, node, i + init.length)
       if (memo && res) {
         return memo + (isComment(node) ? "\n" : ",\n") + res
@@ -172,7 +173,7 @@ let htmlToHs2 = curry((opts, html) => {
       } else {
         return memo
       }
-    }, join("\n", mapIndexed(renderNode(depth), init)), tail)
+    }, join("\n", mapI(renderNode(depth), init)), tail)
   })
 
   let renderNodes = curry((depth, nodes) => {

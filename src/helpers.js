@@ -12,9 +12,9 @@ let reduce = require("ramda/src/reduce")
 let reject = require("ramda/src/reject")
 let sortBy = require("ramda/src/sortBy")
 
-let mapIndexed = addIndex(map)
+let mapI = addIndex(map)
 
-let reduceIndexed = addIndex(reduce)
+let reduceI = addIndex(reduce)
 
 let dropEmpty = filter(identity)
 
@@ -22,28 +22,23 @@ let joinNonEmpty = pipe(dropEmpty, join(", "))
 
 let commonSort = sortBy(identity)
 
-let filterNames = curry((names, attrs) => {
+let filterByNames = curry((names, attrs) => {
   return filter(attr => contains(attr.name, names), attrs)
 })
 
-let rejectNames = curry((names, attrs) => {
+let rejectByNames = curry((names, attrs) => {
   return reject(attr => contains(attr.name, names), attrs)
 })
 
-let findName = curry((name, attrs) => {
+let findByName = curry((name, attrs) => {
   return find(attr => attr.name == name, attrs)
 })
 
-let addName = curry((name, value, attrs) => {
-  return append({name, value}, attrs)
-})
-
-exports.mapIndexed = mapIndexed
-exports.reduceIndexed = reduceIndexed
+exports.mapI = mapI
+exports.reduceI = reduceI
 exports.dropEmpty = dropEmpty
 exports.joinNonEmpty = joinNonEmpty
 exports.commonSort = commonSort
-exports.filterNames = filterNames
-exports.rejectNames = rejectNames
-exports.findName = findName
-exports.addName = addName
+exports.filterByNames = filterByNames
+exports.rejectByNames = rejectByNames
+exports.findByName = findByName
