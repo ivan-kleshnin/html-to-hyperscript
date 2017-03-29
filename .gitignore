@@ -3,6 +3,6 @@
 ignore/
 npm-debug.log
 node_modules/
+bower_components/
 website/
 test*
-bower_components
