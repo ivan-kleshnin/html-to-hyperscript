@@ -1,4 +1,16 @@
-let {addIndex, append, contains, curry, filter, find, identity, join, map, pipe, reduce, reject, sortBy} = require("ramda")
+var addIndex = require("ramda/src/addIndex")
+var append = require("ramda/src/append")
+var contains = require("ramda/src/contains")
+var curry = require("ramda/src/curry")
+var filter = require("ramda/src/filter")
+var find = require("ramda/src/find")
+var identity = require("ramda/src/identity")
+var join = require("ramda/src/join")
+var map = require("ramda/src/map")
+var pipe = require("ramda/src/pipe")
+var reduce = require("ramda/src/reduce")
+var reject = require("ramda/src/reject")
+var sortBy = require("ramda/src/sortBy")
 
 let mapIndexed = addIndex(map)
 
