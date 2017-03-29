@@ -82,6 +82,13 @@ describe("htmlToHs()", function () {
     )
   })
 
+  it("should parse style into object", function () {
+    assert.equal(
+      convert('<div style="color:white!important ; background-color: black"></div>'),
+      'div({\n  "style": {\n    "color": "white!important",\n    "background-color": "black"\n  }\n})'
+    )
+  })
+
   describe("opts.tabSize", function () {
     it("should control tabSize", function () {
       let html = `<div><span></span></div>`

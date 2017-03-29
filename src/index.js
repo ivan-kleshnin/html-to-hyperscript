@@ -46,16 +46,6 @@ let normalizeAttrs = (attrs) => {
 }
 
 let CSSRuleTextToObject = function (CSSText) {
-  let regex = /([\w-]*)\s*:\s*([^;]*)/g
-  let match
-  let obj = {}
-  while(match = regex.exec(CSSText)) {
-    obj[match[1]] = match[2].trim()
-  }
-  return obj
-}
-
-let CSSRuleTextToObject = function (CSSText) {
     let regex = /([\w-]*)\s*:\s*([^;]*)/g;
     let match;
     let obj = {};
