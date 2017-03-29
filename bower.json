@@ -1,6 +1,6 @@
 {
   "name": "html-to-hyperscript",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Convert HTML to HyperScript (both syntaxes)",
   "author": {
     "name": "Ivan Kleshnin",
@@ -11,6 +11,7 @@
     "html",
     "hyperscript"
   ],
+  "license": "MIT",
   "main": "src/index.js",
   "moduleType": [
     "amd",
@@ -21,10 +22,6 @@
     "parse5": "^3.0.2",
     "ramda": "^0.22.1"
   },
-  "keywords": [
-    "functional"
-  ],
-  "license": "MIT",
   "ignore": [
     "node_modules",
     "bower_components"
