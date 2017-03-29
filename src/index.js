@@ -55,6 +55,16 @@ let CSSRuleTextToObject = function (CSSText) {
   return obj
 }
 
+let CSSRuleTextToObject = function (CSSText) {
+    let regex = /([\w-]*)\s*:\s*([^;]*)/g;
+    let match;
+    let obj = {};
+    while(match = regex.exec(CSSText)) {
+        obj[match[1]] = match[2].trim();
+    }
+    return obj;
+}
+
 let attributesSelector = (item) => {
   switch (item.name) {
     case "id":    return assoc("id", item.value)
