@@ -14,7 +14,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
-    "mocha": "mocha specs"
+    "test": "mocha specs"
   },
   "engines": {
     "node": ">=7.0.0"
