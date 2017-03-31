@@ -1,9 +1,1 @@
-.idea/
-.DS_Store/
-ignore/
-npm-debug.log
-node_modules/
-bower_components/
-website/
-test*
-specs/
+src

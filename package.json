@@ -5,16 +5,34 @@
     "url": "https://github.com/ivan-kleshnin/html-to-hyperscript.git"
   },
   "version": "0.7.0",
-  "description": "Convert HTML to HyperScript (both syntaxes)",
+  "description": "Convert HTML to HyperScript (both common syntaxes)",
   "author": "Ivan Kleshnin <ivan@paqmind.com> (paqmind.com)",
   "keywords": [
     "html",
     "hyperscript"
   ],
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "build/index.js",
   "scripts": {
-    "test": "mocha specs"
+    "build": "babel src -d build",
+    "test": "mocha specs",
+    "prepublish": "npm run build",
+    "release": "np"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current",
+            "browsers": [
+              "> 1%"
+            ]
+          }
+        }
+      ]
+    ]
   },
   "engines": {
     "node": ">=7.0.0"
@@ -24,6 +42,9 @@
     "ramda": "^0.22.1"
   },
   "devDependencies": {
-    "mocha": "2.3.4"
+    "babel-cli": "^6.24.0",
+    "babel-preset-env": "^1.3.2",
+    "mocha": "2.3.4",
+    "np": "^2.13.1"
   }
 }
